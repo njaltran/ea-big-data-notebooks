@@ -1,0 +1,18 @@
+bigdata/
+CLAUDE.md
+.claude/
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+.DS_Store
+.idea/
+.vscode/
+.obsidian/
+
+# marimo caches
+__marimo__/
+*.marimo.lock
