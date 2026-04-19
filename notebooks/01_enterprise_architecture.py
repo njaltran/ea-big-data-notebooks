@@ -10,6 +10,7 @@
 
 import marimo
 
+__generated_with = "0.23.1"
 app = marimo.App(width="medium")
 
 
@@ -19,37 +20,34 @@ def _():
     import pandas as pd
     import altair as alt
     import numpy as np
-    return alt, mo, np, pd
+
+    return alt, mo, pd
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        # 01 — Enterprise Architecture & the 5 V's of Big Data
+    mo.md("""
+    # 01 — Enterprise Architecture & the 5 V's of Big Data
 
-        Paired with [`resources/01-intro.md`](../resources/01-intro.md).
+    Paired with [`resources/01-intro.md`](../resources/01-intro.md).
 
-        Three interactive ideas:
+    Three interactive ideas:
 
-        1. **EA hierarchy** — where Big Data sits in an enterprise
-        2. **The 5 V's** — Volume, Velocity, Variety, Veracity, Value
-        3. **Stack picker** — match a workload profile to course technologies
-        """
-    )
+    1. **EA hierarchy** — where Big Data sits in an enterprise
+    2. **The 5 V's** — Volume, Velocity, Variety, Veracity, Value
+    3. **Stack picker** — match a workload profile to course technologies
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 1. EA Hierarchy
+    mo.md("""
+    ## 1. EA Hierarchy
 
-        An Enterprise Architecture is a layered view of an organization. The course focuses on the
-        bottom three: **Data, Application, Technology**. Click to expand the layers.
-        """
-    )
+    An Enterprise Architecture is a layered view of an organization. The course focuses on the
+    bottom three: **Data, Application, Technology**. Click to expand the layers.
+    """)
     return
 
 
@@ -70,13 +68,11 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 2. The 5 V's
+    mo.md("""
+    ## 2. The 5 V's
 
-        Pick a V — see example magnitudes from real systems, and which course technologies address it.
-        """
-    )
+    Pick a V — see example magnitudes from real systems, and which course technologies address it.
+    """)
     return
 
 
@@ -160,15 +156,15 @@ def _(alt, pd, v_choice):
     df = pd.DataFrame(cfg["examples"], columns=["example", "magnitude"])
     is_log = cfg["units"] in ("bytes", "events / second")
     scale = alt.Scale(type="log") if is_log else alt.Scale(type="linear")
-    chart = (
-        alt.Chart(df)
-        .mark_bar()
-        .encode(
-            x=alt.X("magnitude:Q", scale=scale, title=cfg["units"]),
-            y=alt.Y("example:N", sort="-x", title=None),
-            tooltip=["example", "magnitude"],
-        )
-        .properties(height=180, width=560, title=f"{v_choice.value} — {cfg['explainer']}")
+    # Log-scale bars render invisibly (baseline at 0 = -∞); use circles instead.
+    base = alt.Chart(df).encode(
+        x=alt.X("magnitude:Q", scale=scale, title=cfg["units"]),
+        y=alt.Y("example:N", sort="-x", title=None),
+        tooltip=["example", "magnitude"],
+    )
+    mark = base.mark_circle(size=220, opacity=0.85) if is_log else base.mark_bar()
+    chart = mark.properties(
+        height=220, width=560, title=f"{v_choice.value} — {cfg['explainer']}"
     )
     chart
     return (cfg,)
@@ -176,20 +172,20 @@ def _(alt, pd, v_choice):
 
 @app.cell
 def _(cfg, mo):
-    mo.md(f"**Typical tech:** {cfg['tech']}")
+    mo.md(f"""
+    **Typical tech:** {cfg['tech']}
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 3. Stack picker
+    mo.md("""
+    ## 3. Stack picker
 
-        Rate your workload along Volume / Velocity / Variety (low, medium, high). The table below filters
-        to course technologies whose sweet spot matches.
-        """
-    )
+    Rate your workload along Volume / Velocity / Variety (low, medium, high). The table below filters
+    to course technologies whose sweet spot matches.
+    """)
     return
 
 
@@ -233,14 +229,12 @@ def _(mo, pd, var, vel, vol):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ---
+    mo.md("""
+    ---
 
-        **Recap** — EA gives the layered lens; the 5 V's diagnose the workload; the tech stack follows.
-        Banko/Brill and Halevy (next notebooks) show *why* Volume alone is often the biggest win.
-        """
-    )
+    **Recap** — EA gives the layered lens; the 5 V's diagnose the workload; the tech stack follows.
+    Banko/Brill and Halevy (next notebooks) show *why* Volume alone is often the biggest win.
+    """)
     return
 
 
