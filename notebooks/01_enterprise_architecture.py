@@ -220,10 +220,12 @@ def _(mo, pd, var, vel, vol):
         & (stack["Var"] <= var.value)
     ].drop(columns=["Vol", "Vel", "Var"])
 
-    if match.empty:
+    _out = (
         mo.md("_No match — drag the sliders up._")
-    else:
-        mo.ui.table(match, selection=None, pagination=False)
+        if match.empty
+        else mo.ui.table(match, selection=None, pagination=False)
+    )
+    _out
     return
 
 
