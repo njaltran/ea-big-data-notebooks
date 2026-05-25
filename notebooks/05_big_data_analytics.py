@@ -10,6 +10,7 @@
 
 import marimo
 
+__generated_with = "0.23.1"
 app = marimo.App(width="medium")
 
 
@@ -19,38 +20,35 @@ def _():
     import numpy as np
     import pandas as pd
     import altair as alt
+
     return alt, mo, np, pd
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        # 05 — Big Data Analytics (Watson 2014)
+    mo.md("""
+    # 05 — Big Data Analytics (Watson 2014)
 
-        Paired with [`resources/05-watson-tutorial.md`](../resources/05-watson-tutorial.md).
+    Paired with [`resources/05-watson-tutorial.md`](../resources/05-watson-tutorial.md).
 
-        Four interactive tools:
+    Four interactive tools:
 
-        1. **Analytics maturity** — Descriptive → Predictive → Prescriptive, with real cases
-        2. **Platform decision tree** — V/V/V profile → recommended platform
-        3. **Cloud warehouse cost** — Redshift $1K/TB/year model
-        4. **MapReduce speedup** — Amdahl's Law on a synthetic job
-        """
-    )
+    1. **Analytics maturity** — Descriptive → Predictive → Prescriptive, with real cases
+    2. **Platform decision tree** — V/V/V profile → recommended platform
+    3. **Cloud warehouse cost** — Redshift $1K/TB/year model
+    4. **MapReduce speedup** — Amdahl's Law on a synthetic job
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 1. Analytics maturity
+    mo.md("""
+    ## 1. Analytics maturity
 
-        Watson: most organizations mature **descriptive → predictive → prescriptive**. Each step adds
-        a different question and a different case study.
-        """
-    )
+    Watson: most organizations mature **descriptive → predictive → prescriptive**. Each step adds
+    a different question and a different case study.
+    """)
     return
 
 
@@ -97,14 +95,12 @@ def _(mo, stage):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 2. Platform decision tree
+    mo.md("""
+    ## 2. Platform decision tree
 
-        Watson: *"There is no formula. Consider volume, velocity, variety, users, batch vs real-time, cost."*
-        This is a simplified rules-of-thumb picker.
-        """
-    )
+    Watson: *"There is no formula. Consider volume, velocity, variety, users, batch vs real-time, cost."*
+    This is a simplified rules-of-thumb picker.
+    """)
     return
 
 
@@ -148,14 +144,12 @@ def _(mo, v_var, v_vel, v_vol):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 3. Cloud warehouse cost
+    mo.md("""
+    ## 3. Cloud warehouse cost
 
-        Amazon Redshift, circa 2013, priced at **$1,000 / TB / year**. A sanity check on "can we just
-        throw it in a warehouse?"
-        """
-    )
+    Amazon Redshift, circa 2013, priced at **$1,000 / TB / year**. A sanity check on "can we just
+    throw it in a warehouse?"
+    """)
     return
 
 
@@ -198,18 +192,16 @@ def _(alt, growth, mo, pd, tb, years):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 4. MapReduce parallelism (Amdahl's Law)
+    mo.md("""
+    ## 4. MapReduce parallelism (Amdahl's Law)
 
-        A job has a **serial fraction** `s` (coordinator, shuffle, final reduce) and a parallelizable
-        rest `1 - s`. Speedup on `P` nodes:
+    A job has a **serial fraction** `s` (coordinator, shuffle, final reduce) and a parallelizable
+    rest `1 - s`. Speedup on `P` nodes:
 
-        $$S(P) = \\frac{1}{s + \\frac{1 - s}{P}}$$
+    $$S(P) = \frac{1}{s + \frac{1 - s}{P}}$$
 
-        Drag `s` — even 5% serial caps you at 20× no matter how many nodes you add.
-        """
-    )
+    Drag `s` — even 5% serial caps you at 20× no matter how many nodes you add.
+    """)
     return
 
 
@@ -256,19 +248,17 @@ def _(alt, max_nodes, mo, np, pd, serial):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ---
+    mo.md("""
+    ---
 
-        **Takeaway:** Big Data capability is **federated** — warehouse + Hadoop + streaming + NoSQL +
-        cloud all coexist, glued together by SQL/Hive. EA's job is to match each workload to the
-        platform where it runs cheapest and fastest, then integrate the results.
+    **Takeaway:** Big Data capability is **federated** — warehouse + Hadoop + streaming + NoSQL +
+    cloud all coexist, glued together by SQL/Hive. EA's job is to match each workload to the
+    platform where it runs cheapest and fastest, then integrate the results.
 
-        That closes the series: the 5 V's diagnose the workload (NB 01), complexity sets the compute
-        cost (NB 02), Banko/Brill and Halevy argue that more data wins (NB 03–04), and Watson names
-        the platforms (NB 05).
-        """
-    )
+    That closes the series: the 5 V's diagnose the workload (NB 01), complexity sets the compute
+    cost (NB 02), Banko/Brill and Halevy argue that more data wins (NB 03–04), and Watson names
+    the platforms (NB 05).
+    """)
     return
 
 

@@ -1,13 +1,24 @@
-bigdata/
+# personal Claude config
 CLAUDE.md
 .claude/
+.mcp.json
 
+# secrets (match at any depth)
+secrets.toml
+**/secrets.toml
+*.secrets.toml
+**/*.secrets.toml
+*.env
+.env*
+
+# python
 __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
 venv/
 
+# editors / OS
 .DS_Store
 .idea/
 .vscode/
@@ -16,3 +27,22 @@ venv/
 # marimo caches
 __marimo__/
 *.marimo.lock
+
+# data (rebuildable from pipeline)
+*.duckdb
+*.duckdb.wal
+
+# course materials (copyrighted, do not redistribute)
+course_material/
+3 Programming Paradigms.pdf
+bigdata_requirements.pdf
+Paradigms.pdf
+
+# embedded git repos (course exercises)
+git_exercise/
+
+# caveman backup files
+*.original.md
+
+# legacy
+bigdata/

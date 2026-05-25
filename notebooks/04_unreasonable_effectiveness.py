@@ -10,6 +10,7 @@
 
 import marimo
 
+__generated_with = "0.23.1"
 app = marimo.App(width="medium")
 
 
@@ -19,40 +20,37 @@ def _():
     import numpy as np
     import pandas as pd
     import altair as alt
+
     return alt, mo, np, pd
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        # 04 — The Unreasonable Effectiveness of Data (Halevy, Norvig, Pereira 2009)
+    mo.md("""
+    # 04 — The Unreasonable Effectiveness of Data (Halevy, Norvig, Pereira 2009)
 
-        Paired with [`resources/04-halevy-unreasonable-effectiveness.md`](../resources/04-halevy-unreasonable-effectiveness.md).
+    Paired with [`resources/04-halevy-unreasonable-effectiveness.md`](../resources/04-halevy-unreasonable-effectiveness.md).
 
-        Thesis: for human-behavior problems (language, vision), theory bends the knee to **web-scale data**.
-        > "Simple models and a lot of data trump more elaborate models based on less data."
+    Thesis: for human-behavior problems (language, vision), theory bends the knee to **web-scale data**.
+    > "Simple models and a lot of data trump more elaborate models based on less data."
 
-        Three interactive tools:
+    Three interactive tools:
 
-        1. **Corpus scale ladder** — Brown (1M) → Google (1T) words
-        2. **Long-tail distribution** — Zipf-generated; watch rare events emerge
-        3. **Web-table attributes** — Paşca-style schema autocomplete
-        """
-    )
+    1. **Corpus scale ladder** — Brown (1M) → Google (1T) words
+    2. **Long-tail distribution** — Zipf-generated; watch rare events emerge
+    3. **Web-table attributes** — Paşca-style schema autocomplete
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 1. Corpus scale ladder
+    mo.md("""
+    ## 1. Corpus scale ladder
 
-        Drag the slider up the orders of magnitude. Every decade of data buys roughly a fixed chunk of
-        accuracy — the line is straight on a log-x axis, just like Banko & Brill.
-        """
-    )
+    Drag the slider up the orders of magnitude. Every decade of data buys roughly a fixed chunk of
+    accuracy — the line is straight on a log-x axis, just like Banko & Brill.
+    """)
     return
 
 
@@ -99,14 +97,12 @@ def _(alt, log_words, mo, np, pd):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 2. The long tail — don't throw away rare events
+    mo.md("""
+    ## 2. The long tail — don't throw away rare events
 
-        Zipf's law: the `k`-th most-common word has frequency ∝ `1/k`. Most of the mass is in the head,
-        but the **tail is enormous**. Halevy: *"Web data = individually rare but collectively frequent."*
-        """
-    )
+    Zipf's law: the `k`-th most-common word has frequency ∝ `1/k`. Most of the mass is in the head,
+    but the **tail is enormous**. Halevy: *"Web data = individually rare but collectively frequent."*
+    """)
     return
 
 
@@ -162,15 +158,13 @@ def _(alt, corpus_log, mo, np, pd, vocab_log):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 3. Web-table attribute autocomplete (Paşca)
+    mo.md("""
+    ## 3. Web-table attribute autocomplete (Paşca)
 
-        Halevy et al. mention extracting 2.5M distinct schemata from 150M web tables. Given a *class*,
-        you can propose its top attributes with ~90% precision. Pick a class and see synthetic
-        suggestions:
-        """
-    )
+    Halevy et al. mention extracting 2.5M distinct schemata from 150M web tables. Given a *class*,
+    you can propose its top attributes with ~90% precision. Pick a class and see synthetic
+    suggestions:
+    """)
     return
 
 
@@ -210,19 +204,17 @@ def _(pd, seed):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        The numbers are illustrative, but the pattern is real: the **top-10 attributes per class hit
-        ~90%** precision because the same schemas recur across millions of tables. Data at scale
-        becomes its own ontology — no hand-curated Semantic Web needed.
+    mo.md("""
+    The numbers are illustrative, but the pattern is real: the **top-10 attributes per class hit
+    ~90%** precision because the same schemas recur across millions of tables. Data at scale
+    becomes its own ontology — no hand-curated Semantic Web needed.
 
-        ---
+    ---
 
-        **Takeaway:** Halevy's thesis is operational — *choose a representation that exploits unlabeled
-        data at web scale*. [Notebook 05](05_big_data_analytics.py) grounds this in the platforms that
-        make it possible.
-        """
-    )
+    **Takeaway:** Halevy's thesis is operational — *choose a representation that exploits unlabeled
+    data at web scale*. [Notebook 05](05_big_data_analytics.py) grounds this in the platforms that
+    make it possible.
+    """)
     return
 
 

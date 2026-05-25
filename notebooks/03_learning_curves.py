@@ -10,6 +10,7 @@
 
 import marimo
 
+__generated_with = "0.23.1"
 app = marimo.App(width="medium")
 
 
@@ -19,43 +20,40 @@ def _():
     import numpy as np
     import pandas as pd
     import altair as alt
+
     return alt, mo, np, pd
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        # 03 — Banko & Brill (2001): Learning curves at scale
+    mo.md("""
+    # 03 — Banko & Brill (2001): Learning curves at scale
 
-        Paired with [`resources/03-banko-brill-2001.md`](../resources/03-banko-brill-2001.md).
+    Paired with [`resources/03-banko-brill-2001.md`](../resources/03-banko-brill-2001.md).
 
-        The paper's punchline: on NLP disambiguation (e.g. *principle* vs *principal*), four different
-        learners all keep improving **log-linearly** from 10⁶ to 10⁹ words — none plateaus.
+    The paper's punchline: on NLP disambiguation (e.g. *principle* vs *principal*), four different
+    learners all keep improving **log-linearly** from 10⁶ to 10⁹ words — none plateaus.
 
-        > *"Reconsider the trade-off between investing in better algorithms vs. investing in more data."*
+    > *"Reconsider the trade-off between investing in better algorithms vs. investing in more data."*
 
-        Three interactive tools:
+    Three interactive tools:
 
-        1. **Curve reproduction** — shape of `accuracy ≈ a + b·log₁₀(n)` per learner
-        2. **Committee voting** — agreement level → accuracy (paper's Table)
-        3. **Active vs sequential sampling** — budget split at fixed labels
-        """
-    )
+    1. **Curve reproduction** — shape of `accuracy ≈ a + b·log₁₀(n)` per learner
+    2. **Committee voting** — agreement level → accuracy (paper's Table)
+    3. **Active vs sequential sampling** — budget split at fixed labels
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 1. Learning curves
+    mo.md("""
+    ## 1. Learning curves
 
-        We model each learner with `accuracy(n) = min(1, a + b · log₁₀(n / 10⁶))` where `a` is the
-        starting accuracy at 1M words and `b` is the per-decade slope. Drag the sliders to see how
-        slope and ceiling interact.
-        """
-    )
+    We model each learner with `accuracy(n) = min(1, a + b · log₁₀(n / 10⁶))` where `a` is the
+    starting accuracy at 1M words and `b` is the per-decade slope. Drag the sliders to see how
+    slope and ceiling interact.
+    """)
     return
 
 
@@ -101,29 +99,25 @@ def _(alt, max_exp, np, pd, slope_mult):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        Notice two things:
+    mo.md("""
+    Notice two things:
 
-        - The lines stay straight on a **log-x** axis through 10⁹ words → **log-linear** growth, no asymptote.
-        - Differences between learners shrink as `n` grows — more data compresses the algorithmic gap.
-        """
-    )
+    - The lines stay straight on a **log-x** axis through 10⁹ words → **log-linear** growth, no asymptote.
+    - Differences between learners shrink as `n` grows — more data compresses the algorithmic gap.
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 2. Committee voting (§5.2)
+    mo.md("""
+    ## 2. Committee voting (§5.2)
 
-        Ten Naïve Bayes classifiers trained on bootstrap samples. Auto-label only instances where `k`
-        of them agree. Higher agreement = more confident = higher accuracy.
+    Ten Naïve Bayes classifiers trained on bootstrap samples. Auto-label only instances where `k`
+    of them agree. Higher agreement = more confident = higher accuracy.
 
-        The paper reports (exact values):
-        """
-    )
+    The paper reports (exact values):
+    """)
     return
 
 
@@ -180,19 +174,17 @@ def _(agree_threshold, mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 3. Active learning vs sequential sampling (§5.1)
+    mo.md("""
+    ## 3. Active learning vs sequential sampling (§5.1)
 
-        Budget `M` labels. Split them:
+    Budget `M` labels. Split them:
 
-        - `M · u` on the **most-uncertain** instances (highest vote-entropy under bagging)
-        - `M · (1 − u)` on **random** instances
+    - `M · u` on the **most-uncertain** instances (highest vote-entropy under bagging)
+    - `M · (1 − u)` on **random** instances
 
-        Paper finding: pure uncertainty sampling (u = 1) biases the training set toward hard cases.
-        Mixing half-and-half beats both extremes. Sliding `u`:
-        """
-    )
+    Paper finding: pure uncertainty sampling (u = 1) biases the training set toward hard cases.
+    Mixing half-and-half beats both extremes. Sliding `u`:
+    """)
     return
 
 
@@ -239,14 +231,12 @@ def _(alt, budget, mix, mo, np, pd):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ---
+    mo.md("""
+    ---
 
-        **Takeaway:** Banko & Brill reframed the field — given free labels, **ship more data** instead of
-        a cleverer model. [Notebook 04](04_unreasonable_effectiveness.py) stretches this even further.
-        """
-    )
+    **Takeaway:** Banko & Brill reframed the field — given free labels, **ship more data** instead of
+    a cleverer model. [Notebook 04](04_unreasonable_effectiveness.py) stretches this even further.
+    """)
     return
 
 

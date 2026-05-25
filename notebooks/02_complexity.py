@@ -10,6 +10,7 @@
 
 import marimo
 
+__generated_with = "0.23.1"
 app = marimo.App(width="medium")
 
 
@@ -20,30 +21,31 @@ def _():
     import pandas as pd
     import altair as alt
     import math
+
     return alt, math, mo, np, pd
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        # 02 — Time & Space Complexity
+    mo.md("""
+    # 02 — Time & Space Complexity
 
-        Paired with [`resources/02-time-space-complexity.md`](../resources/02-time-space-complexity.md).
+    Paired with [`resources/02-time-space-complexity.md`](../resources/02-time-space-complexity.md).
 
-        Three interactive tools:
+    Three interactive tools:
 
-        1. **Growth plotter** — draw any subset of O(1) … O(n!) on one axis
-        2. **Crossover explorer** — at what `n` does `a·n²` overtake `b·n`?
-        3. **Data-structure matrix** — pick operations, see the trade-off
-        """
-    )
+    1. **Growth plotter** — draw any subset of O(1) … O(n!) on one axis
+    2. **Crossover explorer** — at what `n` does `a·n²` overtake `b·n`?
+    3. **Data-structure matrix** — pick operations, see the trade-off
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md("## 1. Growth plotter")
+    mo.md("""
+    ## 1. Growth plotter
+    """)
     return
 
 
@@ -97,16 +99,14 @@ def _(alt, classes, log_scale, math, max_n, np, pd):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 2. Crossover explorer
+    mo.md("""
+    ## 2. Crossover explorer
 
-        Algorithm A does `a · n` work. Algorithm B does `b · n²` work. At small `n`, A's constant can be
-        huge and B wins. At some crossover `n*`, they meet, then B's quadratic term runs away.
+    Algorithm A does `a · n` work. Algorithm B does `b · n²` work. At small `n`, A's constant can be
+    huge and B wins. At some crossover `n*`, they meet, then B's quadratic term runs away.
 
-        This is Banko & Brill in miniature: *constant-factor elegance matters less than the asymptotic class.*
-        """
-    )
+    This is Banko & Brill in miniature: *constant-factor elegance matters less than the asymptotic class.*
+    """)
     return
 
 
@@ -169,13 +169,11 @@ def _(a, b, pd):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## 3. Data-structure trade-offs
+    mo.md("""
+    ## 3. Data-structure trade-offs
 
-        Pick operations you care about — the table sorts structures by total cost. `O(1)` rows go first.
-        """
-    )
+    Pick operations you care about — the table sorts structures by total cost. `O(1)` rows go first.
+    """)
     return
 
 
@@ -215,14 +213,12 @@ def _(ops, pd):
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ---
+    mo.md("""
+    ---
 
-        **Takeaway:** the Big-O class beats the constant every time — but only once `n` is big enough.
-        That threshold is often the hidden design decision.
-        """
-    )
+    **Takeaway:** the Big-O class beats the constant every time — but only once `n` is big enough.
+    That threshold is often the hidden design decision.
+    """)
     return
 
 
